@@ -17,18 +17,21 @@ ApplicationWindow {
 
             ToolButton {
                 id: toolButton
-                text: stackView.depth > 1 ? "\u25C0" : "\u2630"
+                text: stackView.depth > 1 ? "\u25C0" : " "
                 font.pixelSize: Qt.application.font.pixelSize * 1.6
                 onClicked: {
                     if (stackView.depth > 1) {
                         stackView.pop()
-                    } else {
-                        drawer.open()
+                    }
+                    else {
+//                        drawer.open()
+                        stackView.push("Home.qml")
                     }
                 }
             }
             Label {
-                text: stackView.currentItem.title
+//                text: stackView.currentItem.title
+                text: appData.author
                 elide: Label.ElideRight
                 horizontalAlignment: Qt.AlignHCenter
                 verticalAlignment: Qt.AlignVCenter
@@ -40,31 +43,10 @@ ApplicationWindow {
                     console.log("hello")
                 }
             }
-        }
-    }
-
-    Drawer {
-        id: drawer
-        width: window.width * 0.66
-        height: window.height
-
-        Column {
-            anchors.fill: parent
-
-            ItemDelegate {
-                text: qsTr("Page 1")
-                width: parent.width
+            ToolButton {
+                text: qsTr("⋮")
                 onClicked: {
-                    stackView.push("Page1Form.ui.qml")
-                    drawer.close()
-                }
-            }
-            ItemDelegate {
-                text: qsTr("Page 2")
-                width: parent.width
-                onClicked: {
-                    stackView.push("Page2Form.ui.qml")
-                    drawer.close()
+                    console.log("hello2")
                 }
             }
         }
@@ -72,7 +54,22 @@ ApplicationWindow {
 
     StackView {
         id: stackView
-        initialItem: "HomeForm.ui.qml"
+        initialItem: homeView
         anchors.fill: parent
+    }
+
+    Component {
+        id: homeView
+        Home {
+            win: window
+        }
+    }
+
+    Component.onCompleted: {
+        appData.author = "Jonah"  // invokes Message::setAuthor()
+    }
+
+    function demo() {
+        console.log("in main.qml demo()");
     }
 }
