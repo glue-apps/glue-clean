@@ -1,5 +1,6 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.5
+import QtQuick.Layouts 1.15
 
 ApplicationWindow {
     id: window
@@ -11,22 +12,34 @@ ApplicationWindow {
     header: ToolBar {
         contentHeight: toolButton.implicitHeight
 
-        ToolButton {
-            id: toolButton
-            text: stackView.depth > 1 ? "\u25C0" : "\u2630"
-            font.pixelSize: Qt.application.font.pixelSize * 1.6
-            onClicked: {
-                if (stackView.depth > 1) {
-                    stackView.pop()
-                } else {
-                    drawer.open()
+        RowLayout {
+            anchors.fill: parent
+
+            ToolButton {
+                id: toolButton
+                text: stackView.depth > 1 ? "\u25C0" : "\u2630"
+                font.pixelSize: Qt.application.font.pixelSize * 1.6
+                onClicked: {
+                    if (stackView.depth > 1) {
+                        stackView.pop()
+                    } else {
+                        drawer.open()
+                    }
                 }
             }
-        }
-
-        Label {
-            text: stackView.currentItem.title
-            anchors.centerIn: parent
+            Label {
+                text: stackView.currentItem.title
+                elide: Label.ElideRight
+                horizontalAlignment: Qt.AlignHCenter
+                verticalAlignment: Qt.AlignVCenter
+                Layout.fillWidth: true
+            }
+            ToolButton {
+                text: qsTr("⋮")
+                onClicked: {
+                    console.log("hello")
+                }
+            }
         }
     }
 
