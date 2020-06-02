@@ -23,15 +23,10 @@ ApplicationWindow {
                     if (stackView.depth > 1) {
                         stackView.pop()
                     }
-                    else {
-//                        drawer.open()
-                        stackView.push("Home.qml")
-                    }
                 }
             }
             Label {
-//                text: stackView.currentItem.title
-                text: appData.author
+                text: stackView.currentItem.title
                 elide: Label.ElideRight
                 horizontalAlignment: Qt.AlignHCenter
                 verticalAlignment: Qt.AlignVCenter
@@ -61,7 +56,7 @@ ApplicationWindow {
     Component {
         id: homeView
         Home {
-            win: window
+            appWindow: window
         }
     }
 
@@ -69,7 +64,7 @@ ApplicationWindow {
         appData.author = "Jonah"  // invokes Message::setAuthor()
     }
 
-    function demo() {
-        console.log("in main.qml demo()");
+    function push() {
+        stackView.push("ScanDetails.qml");
     }
 }

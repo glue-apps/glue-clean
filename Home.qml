@@ -3,21 +3,20 @@ import QtQuick.Controls 2.15
 
 Item {
     id: root
-    property string title: "Home123"
-    property var win: null
-
-    signal stackPush()
+    property string title: "Home"
+    property var appWindow: null
 
     Text {
         id: name
-        text: qsTr("text")
+        text: qsTr("home")
     }
 
     Button {
         text: "Ok"
+        y: 100
         onClicked: {
-//            root.stackPush();
-            win.demo();
+//            console.log(appData.author);
+            appWindow.push();
         }
     }
 
