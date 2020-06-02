@@ -12,10 +12,10 @@ Item {
     }
 
     Button {
-        text: "Ok"
+        text: "Push"
         y: 100
         onClicked: {
-//            console.log(appData.author);
+            console.log(appData.author);
             appWindow.push();
         }
     }
@@ -31,6 +31,7 @@ Item {
 
         onDropped: {
             console.log("onDropped", drop.text);
+            appData.scan(drop.text)
         }
     }
 

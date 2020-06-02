@@ -4,3 +4,4 @@ AppData::AppData(QObject *parent) : QObject(parent)
 {
 
 }
+

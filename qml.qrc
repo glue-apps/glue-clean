@@ -2,7 +2,7 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>qtquickcontrols2.conf</file>
-        <file>Home.qml</file>
-        <file>ScanDetails.qml</file>
+        <file>HomeView.qml</file>
+        <file>DetailsView.qml</file>
     </qresource>
 </RCC>

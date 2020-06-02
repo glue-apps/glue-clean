@@ -22,5 +22,7 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("appData", &appData);
     engine.load(url);
 
+
+
     return app.exec();
 }

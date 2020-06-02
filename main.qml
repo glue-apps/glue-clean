@@ -55,7 +55,14 @@ ApplicationWindow {
 
     Component {
         id: homeView
-        Home {
+        HomeView {
+            appWindow: window
+        }
+    }
+
+    Component {
+        id: detailsView
+        DetailsView {
             appWindow: window
         }
     }
@@ -65,6 +72,10 @@ ApplicationWindow {
     }
 
     function push() {
-        stackView.push("ScanDetails.qml");
+        stackView.push(detailsView);
+    }
+
+    function scan(path) {
+
     }
 }
