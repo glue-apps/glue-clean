@@ -2,7 +2,6 @@
 #define APPDATA_H
 
 #include <QObject>
-#include <QFileInfo>
 #include <QDebug>
 
 class AppData : public QObject
@@ -18,27 +17,20 @@ public:
         }
     }
     QString author() const {
-        QFileInfo info1("/Users/guanxu/Documents/GlueFX/glue-apps/glue-clean");
-        qDebug() << info1.size();
-
-        QFileInfo info2("/Users/guanxu/Documents/GlueFX/glue-apps/glue-clean/docs");
-        qDebug() << info2.size();
-
-        QFileInfo info3("/Users/guanxu/Downloads/20200525-集成产品研发管理研究与思考.pptx");
-        qDebug() << info3.size();
-
         return m_author;
     }
 
-    Q_INVOKABLE void scan(const QString &path) {
-        qDebug() << "c++ scan" << path;
-        return;
-    }
+    Q_INVOKABLE void scan(const QString &path);
 
 signals:
     void authorChanged();
+    void dirAdded(const QString &dirInfo);
+    void dirScanned();
+
 private:
     QString m_author;
+    void scanDir(const QString &path);
+    qint64 getDirSize(const QString &path);
 };
 
 /*

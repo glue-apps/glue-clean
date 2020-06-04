@@ -71,8 +71,22 @@ ApplicationWindow {
         appData.author = "Jonah"  // invokes Message::setAuthor()
     }
 
-    function push() {
-        stackView.push(detailsView);
+    Connections {
+        target: appData
+        function onAuthorChanged() {
+            console.log("onAuthorChanged");
+        }
+    }
+
+    function push(viewName) {
+        var views = {
+            "Home": homeView,
+            "Details": detailsView
+        }
+        var viewId = views[viewName];
+        if (viewId) {
+            stackView.push(viewId);
+        }
     }
 
     function scan(path) {

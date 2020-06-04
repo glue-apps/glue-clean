@@ -8,4 +8,11 @@ Item {
         id: name
         text: qsTr("details")
     }
+
+    Connections {
+        target: appData
+        function onDirAdded(dirInfo) {
+            console.log("Details onDirAdded", dirInfo);
+        }
+    }
 }

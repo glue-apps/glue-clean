@@ -15,8 +15,9 @@ Item {
         text: "Push"
         y: 100
         onClicked: {
-            console.log(appData.author);
-            appWindow.push();
+//            console.log(appData.author);
+//            appWindow.push();
+            appWindow.push("Details");
         }
     }
 
@@ -31,9 +32,24 @@ Item {
 
         onDropped: {
             console.log("onDropped", drop.text);
-            appData.scan(drop.text)
+            var path = drop.text;
+
+            if (path.indexOf("file://") === 0) {
+                appData.scan(path.substring(7))
+            }
         }
     }
 
+    Connections {
+        target: appData
+        function onDirAdded(dirInfo) {
+            console.log("-- Home onDirAdded", dirInfo);
+//            appWindow.push("Details");
+        }
 
+        function onDirScanned() {
+            console.log("----- Home onDirScanned");
+            appWindow.push("Details");
+        }
+    }
 }
